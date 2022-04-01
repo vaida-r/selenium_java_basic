@@ -6,3 +6,4 @@ output/
 phantomjsdriver.log
 *.jpg
 lib/.DS_Store
+lib/chromedriver.exe
