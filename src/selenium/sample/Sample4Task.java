@@ -11,6 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.io.File;
 
 import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotEquals;
 
 public class Sample4Task {
     WebDriver driver;
@@ -22,6 +23,7 @@ public class Sample4Task {
         // from Sample 1:
         String libWithDriversLocation = System.getProperty("user.dir") + File.separator + "lib" + File.separator;
         System.setProperty("webdriver.chrome.driver", libWithDriversLocation + "chromedriver" + new selenium.ChangeToFileExtension().extension());
+        //System.setProperty("webdriver.chrome.driver","C:\\Users\\Vaida\\Desktop\\bselenium\\selenium_java_basic\\lib\\chromedriver.exe");
         // declaration above:
         driver = new ChromeDriver();
         //open page:
@@ -38,14 +40,26 @@ public class Sample4Task {
     public void enterNumber() throws Exception {
 //         TODO:
 //        enter a number under "Number"
+        String numberToEnter = "9";
+        driver.findElement(By.name("vfb-9")).clear();
+        driver.findElement(By.name("vfb-9")).sendKeys(numberToEnter);
 //        check that button is not clickable "Clear Result"
+        assertFalse(driver.findElement(By.id("clear_result_button_number")).isEnabled());
 //        check that text is not displayed
+        assertFalse(driver.findElement(By.id("result_number")).isDisplayed());
 //        click on "Result" button
+        driver.findElement(By.id("result_button_number")).click();
 //        check that text is displayed
+        assertTrue(driver.findElement(By.id("result_number")).isDisplayed());
 //        check that the correct Text appears ("You entered number: "NUMBER YOU ENTERED"")
+        assertEquals("You entered number: \"" + numberToEnter + "\"", driver.findElement(By.id("result_number")).getText());
 //        check that the button "Clear Result" is clickable now
+        assertTrue(driver.findElement(By.id("clear_result_button_number")).isEnabled());
 //        click on "Clear Result"
+        driver.findElement(By.id("clear_result_button_number")).click();
 //        check that the text is still (""), but it is not displayed
+        assertEquals("", driver.findElement(By.id("result_number")).getText());
+        assertFalse(driver.findElement(By.id("result_number")).isDisplayed());
     }
 
     @Test
@@ -55,5 +69,16 @@ public class Sample4Task {
 //        click on "This is a link to Homepage"
 //        check that current url is not base_url
 //        verify that current url is homepage
+
+        /// ???? kol kas nieko nesuprantu
+
+        String homepage = "https://kristinek.github.io/site/";
+        assertEquals(base_url, driver.getCurrentUrl());
+        driver.findElement(By.id("homepage_link")).click();
+        assertNotEquals(base_url, driver.getCurrentUrl());
+        assertEquals(homepage, driver.getCurrentUrl());
+
+
+
     }
 }

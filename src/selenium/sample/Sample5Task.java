@@ -21,6 +21,7 @@ public class Sample5Task {
         // from Sample 1:
         String libWithDriversLocation = System.getProperty("user.dir") + File.separator + "lib" + File.separator;
         System.setProperty("webdriver.chrome.driver", libWithDriversLocation + "chromedriver" + new selenium.ChangeToFileExtension().extension());
+        //System.setProperty("webdriver.chrome.driver","C:\\Users\\Vaida\\Desktop\\bselenium\\selenium_java_basic\\lib\\chromedriver.exe");
         // declaration above:
         driver = new ChromeDriver();
         //open page:
@@ -37,20 +38,32 @@ public class Sample5Task {
     public void goToAlertedPageViaButton() throws Exception {
 //         TODO:
 //        click on "To go to alerted page press Ok. Or stay here" button
+        driver.findElement(By.className("w3-blue")).click();
 //        switch to alert
 //        click ok
+        driver.switchTo().alert().accept();
 //        switch to second alert
 //        verify alert text
+        Alert newAlert = driver.switchTo().alert();
+        assertEquals("Booooooooo!",newAlert.getText()) ;
 //        click ok on second alert
+        newAlert.accept();
 //        verify that the correct page is opened
+        assertEquals("https://kristinek.github.io/site/examples/alerted_page",driver.getCurrentUrl());
+
     }
 
     @Test
     public void doNotGoToAlertedPageViaButton() throws Exception {
 //         TODO:
 //        click on "To go to alerted page press Ok. Or stay here" button
+        driver.findElement(By.className("w3-blue")).click();
 //        switch to alert
 //        click cancel
+        driver.switchTo().alert().dismiss();
 //        verify the text on page
+        assertEquals("So you desided to say? Good!",driver.findElement(By.id("textForAlerts")).getText() );
+
+
     }
 }
