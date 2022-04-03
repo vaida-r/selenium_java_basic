@@ -23,9 +23,8 @@ public class Task1 {
     public void openPage() {
 
         String libWithDriversLocation = System.getProperty("user.dir") + File.separator + "lib" + File.separator;
-        //?????????????? - dar perziureti kaip sudda sita properti
-        //System.setProperty("webdriver.chrome.driver", libWithDriversLocation + "chromedriver" + new selenium.ChangeToFileExtension().extension());
-        System.setProperty("webdriver.chrome.driver","C:\\Users\\Vaida\\Desktop\\bselenium\\selenium_java_basic\\lib\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", libWithDriversLocation + "chromedriver" + new selenium.ChangeToFileExtension().extension());
+        //System.setProperty("webdriver.chrome.driver","C:\\Users\\Vaida\\Desktop\\bselenium\\selenium_java_basic\\lib\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("https://kristinek.github.io/site/tasks/enter_a_number");
     }
@@ -127,7 +126,7 @@ public class Task1 {
     }
 
     @Test
-    public void correctSquareRootForAllAllowedNumber() {       // Sergey's suggestion
+    public void correctSquareRootForAllAllowedNumbers() {       // Sergey's suggestion
 //        TODO
 //        enter a number between 50 and 100 digit in the input (square root of which doesn't have a remainder, e.g. 1.732.. is square root of 3) and press submit,
 //        then check that correct no error is seen and check that square root is calculated correctly
