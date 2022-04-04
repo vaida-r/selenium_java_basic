@@ -2,12 +2,15 @@ package selenium.sample.extra;
 
 import org.junit.After;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
 import java.io.File;
+import static org.junit.Assert.assertEquals;
 
 
 public class extra2Task {
@@ -23,9 +26,11 @@ public class extra2Task {
     public void runningOnFirefox() throws Exception {
         System.setProperty("webdriver.gecko.driver", libWithDriversLocation + "geckodriver.exe");
         driver = new FirefoxDriver();
-//        TODO
+//        TODO              // i do not want work with firefox
 //        go to page https://kristinek.github.io/site/examples/po
+       // driver.get("https://kristinek.github.io/site/examples/po");
 //        check the background color of h1 element
+
     }
 
     @Test
@@ -34,7 +39,13 @@ public class extra2Task {
         driver = new ChromeDriver();
 //        TODO
 //        go to page https://kristinek.github.io/site/examples/po
+        driver.get("https://kristinek.github.io/site/examples/po");
 //        check the background color of h1 element
+        System.out.println("h1: "+driver.findElement(By.tagName("h1")).getCssValue("background-color"));   // just wanted to be sure that backcolor describes in upper class, form, etc, but not in tag
+                                                                                                             // in Computed sheet there is no backcolor element
+        WebElement element = driver.findElement(By.cssSelector(".w3-center"));
+        assertEquals("rgba(241, 241, 241, 1)",element.getCssValue("background-color"));
+
     }
 
     @Test

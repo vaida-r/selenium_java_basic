@@ -42,22 +42,26 @@ public class Sample6Task {
 
         String heading2 = "Heading 2 text";
         element = driver.findElement(By.xpath("//h2[contains(text(),'" + heading2 +"')]"));
-        System.out.println(" text is: " + element.getText());
+        System.out.println(" text head is: " + element.getText());
 
-        //        1-2 ways to find text: "Test Text 1"
+//        1-2 ways to find text: "Test Text 1"
         element = driver.findElement(By.xpath("//*[@id=\"test1\"]/p[1]"));
-        System.out.println(" text is: " + element.getText());
+        System.out.println(" text1 is: " + element.getText());
 //        1-2 ways to find text: "Test Text 2"
         element = driver.findElement(By.xpath("//*[@id=\"test1\"]/p[2]"));  // sita galima parasyti dar kitaip, nes turi kita class pavadinima
-        System.out.println(" text is: " + element.getText());
-
-
+        System.out.println(" text2 is: " + element.getText());
 //        1-2 ways to find text: "Test Text 3"
+        element = driver.findElement(By.xpath("//*[@id=\"test3\"]/p[1]"));
+        System.out.println(" text3 is: " + element.getText());
 //        1-2 ways to find text: "Test Text 4"
+        element = driver.findElement(By.xpath("//*[@id=\"test3\"]/p[2]"));
+        System.out.println(" text4 is: " + element.getText());
 //        1-2 ways to find text: "Test Text 5"
+        element = driver.findElement(By.xpath("//*[@id=\"test2\"]/p[1]"));
+        System.out.println(" text5 is: " + element.getText());
 //        1-2 ways to find text: "This is also a button"
         element = driver.findElement(By.xpath("//*[@id=\"buttonId\"]"));
-        System.out.println(" text is: " + element.getAttribute("value"));
+        System.out.println(" text but is: " + element.getAttribute("value"));
     }
 
     @Test
@@ -66,26 +70,26 @@ public class Sample6Task {
 //        1-2 ways to find text: "Heading 2 text"
         String text = "Heading 2 text";
         WebElement element = driver.findElement(By.cssSelector("#heading_2"));   // also i can write (By.cssSelector("#heading_2") to more specify element
-        System.out.println(" text by css is: " + element.getText());
+        System.out.println(" text head by css is: " + element.getText());
         assertEquals(text,element.getText());
 
 //        1-2 ways to find text: "Test Text 1"
         text ="Test Text 1";
         element = driver.findElement(By.cssSelector("#test1 > p.test"));
-        System.out.println(" text by css is: " + element.getText());
+        System.out.println(" text1 by css is: " + element.getText());
         assertEquals(text,element.getText());
 
 //        1-2 ways to find text: "Test Text 2"
         element = driver.findElement(By.cssSelector(".twotest"));
-        System.out.println(" text by css is: " + element.getText());
+        System.out.println(" text2 by css is: " + element.getText());
 //        1-2 ways to find text: "Test Text 3"
         element = driver.findElement(By.cssSelector("#test3 > p:nth-child(1)"));
-        System.out.println(" text by css is: " + element.getText());
+        System.out.println(" text3 by css is: " + element.getText());
         element = driver.findElements(By.cssSelector("#test3 > .test")).get(0);
-        System.out.println(" text by css is: " + element.getText());
+        System.out.println(" text3 by css is: " + element.getText());
 //        1-2 ways to find text: "This is also a button"
         element = driver.findElement(By.cssSelector("#buttonId"));
-        System.out.println(" text by css is: " + element.getAttribute("value"));
+        System.out.println(" text but by css is: " + element.getAttribute("value"));
 
         element = driver.findElement(By.cssSelector("[name=\"randomButton2\"]"));
         System.out.println(" text by css is: " + element.getAttribute("value"));
