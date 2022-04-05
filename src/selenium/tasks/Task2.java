@@ -1,6 +1,5 @@
 package selenium.tasks;
 
-import net.bytebuddy.pool.TypePool;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,10 +10,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
 import java.io.File;
-import java.security.MessageDigest;
+
 import java.util.List;
 
 import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
+
 
 public class Task2 {
     WebDriver driver;
@@ -124,20 +125,16 @@ public class Task2 {
         WebElement name = driver.findElement(By.id("fb_name"));
         name.sendKeys(nameText);
         assertEquals(nameText, name.getAttribute("value"));
-        Thread.sleep(1000);
 
         String ageText = "20";
         WebElement age = driver.findElement(By.id("fb_age"));
         age.sendKeys(ageText);
         assertEquals(ageText, age.getAttribute("value"));
-        Thread.sleep(1000);
 
         String textComment = "Dragons can also fly";
         WebElement comment = driver.findElement(By.cssSelector(".w3-section > .w3-input"));
         comment.sendKeys(textComment);
         assertEquals(textComment, comment.getAttribute("value"));
-        Thread.sleep(1000);
-
 
                     // here a little bit cheating, but let it be. Or maybe not
         List<WebElement> selectorList = driver.findElements(By.cssSelector(".w3-section > .w3-validate"));
@@ -152,12 +149,8 @@ public class Task2 {
         assertEquals(expectedMessage,selector2.getText());
                     // till here
 
-        System.out.println(selector1.getText());
-        Thread.sleep(2000);
-
         WebElement sendButton = driver.findElement(By.className("w3-blue"));
         sendButton.click();
-
 
         WebElement greenButton = driver.findElement(By.className("w3-green"));
         assertEquals("rgba(76, 175, 80, 1)", greenButton.getCssValue("background-color"));
@@ -182,7 +175,6 @@ public class Task2 {
         WebElement name = driver.findElement(By.id("fb_name"));
         name.sendKeys(nameText);
         assertEquals(nameText, name.getAttribute("value"));
-        Thread.sleep(1000);
 
 
         WebElement age = driver.findElement(By.id("fb_age"));
@@ -210,7 +202,6 @@ public class Task2 {
         greenButton.click();
 
         WebElement message = driver.findElement(By.id("message"));
-        System.out.println(message.getText());
         String expectedMessage = "Thank you, " + nameText +", for your feedback!";
         assertEquals(expectedMessage,message.getText());
 
@@ -233,8 +224,6 @@ public class Task2 {
         WebElement name = driver.findElement(By.id("fb_name"));
         name.sendKeys(nameText);
         assertEquals(nameText, name.getAttribute("value"));
-        Thread.sleep(1000);
-
 
         WebElement age = driver.findElement(By.id("fb_age"));
         age.sendKeys("");
@@ -261,7 +250,6 @@ public class Task2 {
         greenButton.click();
 
         WebElement message = driver.findElement(By.id("message"));
-        System.out.println(message.getText());
         String expectedMessage = "Thank you for your feedback!";
         assertEquals(expectedMessage,message.getText());
 
@@ -279,8 +267,6 @@ public class Task2 {
 //         click "No"
 //         check fields are filled correctly
 
-
-        // At this moment only just so much. Need a little bit more time, i'm a slowly person :)
 
         String nameText = "Onute";
         WebElement name = driver.findElement(By.id("fb_name"));
@@ -302,6 +288,9 @@ public class Task2 {
 
         WebElement selector2 = selectorList.get(4);
         selector2.click();
+
+        Select whichOption = new Select(driver.findElement(By.id("like_us")));
+        whichOption.selectByVisibleText("Good");
                 // till here
 
         WebElement sendButton = driver.findElement(By.className("w3-blue"));
@@ -310,15 +299,12 @@ public class Task2 {
         WebElement redButton = driver.findElement(By.className("w3-red"));
         redButton.click();
 
-
         assertEquals(nameText, driver.findElement(By.id("fb_name")).getAttribute("value"));
         assertEquals(ageText, driver.findElement(By.id("fb_age")).getAttribute("value"));
         assertEquals(textComment, driver.findElement(By.cssSelector(".w3-section > .w3-input")).getAttribute("value"));
-//        assertTrue( driver.findElements(By.cssSelector(".w3-section > .w3-validate")).get(0).isSelected()) ;
-//        assertTrue(driver.findElements(By.cssSelector(".w3-section > .w3-validate")).get(4).isSelected());
-
-
-
+//        assertTrue(driver.findElement(By.xpath("//*[@value='English']")).isSelected()) ;      // why do not work???
+//        assertTrue(driver.findElement(By.xpath("//*[@value='male']")).isSelected());
+        assertEquals("Good", driver.findElement(By.id("like_us")).getAttribute("value"));
 
     }
 }
